@@ -46,7 +46,6 @@
             this.grpInformacion = new System.Windows.Forms.GroupBox();
             this.lblMayorArea = new System.Windows.Forms.Label();
             this.lblTotalRegistrados = new System.Windows.Forms.Label();
-            this.btnOrdenarArea = new System.Windows.Forms.Button();
             this.dgvExpedientes = new System.Windows.Forms.DataGridView();
             this.RUC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NombreComercial = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -113,8 +112,9 @@
             this.btnRegistrar.Name = "btnRegistrar";
             this.btnRegistrar.Size = new System.Drawing.Size(180, 32);
             this.btnRegistrar.TabIndex = 8;
-            this.btnRegistrar.Text = "+ REGISTRAR EXPEDIENTE";
+            this.btnRegistrar.Text = "REGISTRAR EXPEDIENTE";
             this.btnRegistrar.UseVisualStyleBackColor = false;
+            this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
             // 
             // txtArea
             // 
@@ -194,7 +194,6 @@
             // grpTramites
             // 
             this.grpTramites.Controls.Add(this.grpInformacion);
-            this.grpTramites.Controls.Add(this.btnOrdenarArea);
             this.grpTramites.Controls.Add(this.dgvExpedientes);
             this.grpTramites.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.grpTramites.Location = new System.Drawing.Point(311, 78);
@@ -208,7 +207,7 @@
             // 
             this.grpInformacion.Controls.Add(this.lblMayorArea);
             this.grpInformacion.Controls.Add(this.lblTotalRegistrados);
-            this.grpInformacion.Location = new System.Drawing.Point(6, 267);
+            this.grpInformacion.Location = new System.Drawing.Point(6, 243);
             this.grpInformacion.Name = "grpInformacion";
             this.grpInformacion.Size = new System.Drawing.Size(516, 74);
             this.grpInformacion.TabIndex = 2;
@@ -234,19 +233,7 @@
             this.lblTotalRegistrados.Size = new System.Drawing.Size(124, 17);
             this.lblTotalRegistrados.TabIndex = 0;
             this.lblTotalRegistrados.Text = "Total Registrados: 0";
-            // 
-            // btnOrdenarArea
-            // 
-            this.btnOrdenarArea.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.btnOrdenarArea.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOrdenarArea.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.btnOrdenarArea.ForeColor = System.Drawing.Color.White;
-            this.btnOrdenarArea.Location = new System.Drawing.Point(6, 229);
-            this.btnOrdenarArea.Name = "btnOrdenarArea";
-            this.btnOrdenarArea.Size = new System.Drawing.Size(231, 31);
-            this.btnOrdenarArea.TabIndex = 1;
-            this.btnOrdenarArea.Text = "ORDENAR POR ÁREA (Descendente)";
-            this.btnOrdenarArea.UseVisualStyleBackColor = false;
+            this.lblTotalRegistrados.Click += new System.EventHandler(this.lblTotalRegistrados_Click);
             // 
             // dgvExpedientes
             // 
@@ -339,6 +326,7 @@
             this.button1.TabIndex = 9;
             this.button1.Text = "BUSCAR";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // txtBuscarRuc
             // 
@@ -361,7 +349,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1149, 468);
+            this.ClientSize = new System.Drawing.Size(1149, 434);
             this.Controls.Add(this.grpConsulta);
             this.Controls.Add(this.grpTramites);
             this.Controls.Add(this.grpRegistro);
@@ -402,7 +390,6 @@
         private System.Windows.Forms.DataGridView dgvExpedientes;
         private System.Windows.Forms.GroupBox grpInformacion;
         private System.Windows.Forms.Label lblTotalRegistrados;
-        private System.Windows.Forms.Button btnOrdenarArea;
         private System.Windows.Forms.DataGridViewTextBoxColumn RUC;
         private System.Windows.Forms.DataGridViewTextBoxColumn NombreComercial;
         private System.Windows.Forms.DataGridViewTextBoxColumn Giro;
