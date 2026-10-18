@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblTituloPrincipal = new System.Windows.Forms.Label();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.lblSubtitulo = new System.Windows.Forms.Label();
@@ -43,6 +43,7 @@
             this.txtRuc = new System.Windows.Forms.TextBox();
             this.lblRuc = new System.Windows.Forms.Label();
             this.grpTramites = new System.Windows.Forms.GroupBox();
+            this.btnEliminar = new System.Windows.Forms.Button();
             this.grpInformacion = new System.Windows.Forms.GroupBox();
             this.lblMayorArea = new System.Windows.Forms.Label();
             this.lblTotalRegistrados = new System.Windows.Forms.Label();
@@ -54,9 +55,10 @@
             this.grpConsulta = new System.Windows.Forms.GroupBox();
             this.txtResultadoBusqueda = new System.Windows.Forms.TextBox();
             this.lblTituloResultados = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnBuscar = new System.Windows.Forms.Button();
             this.txtBuscarRuc = new System.Windows.Forms.TextBox();
             this.lblBuscar = new System.Windows.Forms.Label();
+            this.btnCargarPrueba = new System.Windows.Forms.Button();
             this.grpRegistro.SuspendLayout();
             this.grpTramites.SuspendLayout();
             this.grpInformacion.SuspendLayout();
@@ -142,7 +144,8 @@
             "Farmacia",
             "Ferretería",
             "Restaurante",
-            "Centro de Promoción"});
+            "Centro de Promoción",
+            "Servicios"});
             this.cboGiro.Location = new System.Drawing.Point(121, 126);
             this.cboGiro.Name = "cboGiro";
             this.cboGiro.Size = new System.Drawing.Size(160, 25);
@@ -193,6 +196,7 @@
             // 
             // grpTramites
             // 
+            this.grpTramites.Controls.Add(this.btnEliminar);
             this.grpTramites.Controls.Add(this.grpInformacion);
             this.grpTramites.Controls.Add(this.dgvExpedientes);
             this.grpTramites.Font = new System.Drawing.Font("Segoe UI", 9.75F);
@@ -203,11 +207,25 @@
             this.grpTramites.TabStop = false;
             this.grpTramites.Text = "EXPEDIENTES EN TRÁMITE";
             // 
+            // btnEliminar
+            // 
+            this.btnEliminar.BackColor = System.Drawing.Color.Firebrick;
+            this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEliminar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminar.ForeColor = System.Drawing.Color.White;
+            this.btnEliminar.Location = new System.Drawing.Point(414, 230);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(102, 31);
+            this.btnEliminar.TabIndex = 9;
+            this.btnEliminar.Text = "ELIMINAR FILA";
+            this.btnEliminar.UseVisualStyleBackColor = false;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
             // grpInformacion
             // 
             this.grpInformacion.Controls.Add(this.lblMayorArea);
             this.grpInformacion.Controls.Add(this.lblTotalRegistrados);
-            this.grpInformacion.Location = new System.Drawing.Point(6, 243);
+            this.grpInformacion.Location = new System.Drawing.Point(6, 267);
             this.grpInformacion.Name = "grpInformacion";
             this.grpInformacion.Size = new System.Drawing.Size(516, 74);
             this.grpInformacion.TabIndex = 2;
@@ -233,7 +251,6 @@
             this.lblTotalRegistrados.Size = new System.Drawing.Size(124, 17);
             this.lblTotalRegistrados.TabIndex = 0;
             this.lblTotalRegistrados.Text = "Total Registrados: 0";
-            this.lblTotalRegistrados.Click += new System.EventHandler(this.lblTotalRegistrados_Click);
             // 
             // dgvExpedientes
             // 
@@ -253,6 +270,7 @@
             this.dgvExpedientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvExpedientes.Size = new System.Drawing.Size(516, 202);
             this.dgvExpedientes.TabIndex = 0;
+            this.dgvExpedientes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvExpedientes_CellClick);
             // 
             // RUC
             // 
@@ -274,8 +292,8 @@
             // 
             // Area
             // 
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.Area.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Area.DefaultCellStyle = dataGridViewCellStyle1;
             this.Area.HeaderText = "Área (m²)";
             this.Area.Name = "Area";
             this.Area.ReadOnly = true;
@@ -284,7 +302,7 @@
             // 
             this.grpConsulta.Controls.Add(this.txtResultadoBusqueda);
             this.grpConsulta.Controls.Add(this.lblTituloResultados);
-            this.grpConsulta.Controls.Add(this.button1);
+            this.grpConsulta.Controls.Add(this.btnBuscar);
             this.grpConsulta.Controls.Add(this.txtBuscarRuc);
             this.grpConsulta.Controls.Add(this.lblBuscar);
             this.grpConsulta.Font = new System.Drawing.Font("Segoe UI", 9.75F);
@@ -315,18 +333,17 @@
             this.lblTituloResultados.TabIndex = 10;
             this.lblTituloResultados.Text = "RESULTADOS DE BÚSQUEDA";
             // 
-            // button1
+            // btnBuscar
             // 
-            this.button1.BackColor = System.Drawing.Color.DodgerBlue;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(60, 82);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(180, 32);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "BUSCAR";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnBuscar.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBuscar.ForeColor = System.Drawing.Color.White;
+            this.btnBuscar.Location = new System.Drawing.Point(60, 82);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(180, 32);
+            this.btnBuscar.TabIndex = 9;
+            this.btnBuscar.Text = "BUSCAR";
+            this.btnBuscar.UseVisualStyleBackColor = false;
             // 
             // txtBuscarRuc
             // 
@@ -345,11 +362,26 @@
             this.lblBuscar.TabIndex = 5;
             this.lblBuscar.Text = "Ingrese RUC a buscar:";
             // 
+            // btnCargarPrueba
+            // 
+            this.btnCargarPrueba.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnCargarPrueba.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCargarPrueba.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.btnCargarPrueba.ForeColor = System.Drawing.Color.White;
+            this.btnCargarPrueba.Location = new System.Drawing.Point(32, 18);
+            this.btnCargarPrueba.Name = "btnCargarPrueba";
+            this.btnCargarPrueba.Size = new System.Drawing.Size(95, 48);
+            this.btnCargarPrueba.TabIndex = 9;
+            this.btnCargarPrueba.Text = "CARGAR BD (ejemplo)";
+            this.btnCargarPrueba.UseVisualStyleBackColor = false;
+            this.btnCargarPrueba.Click += new System.EventHandler(this.btnCargarPrueba_Click);
+            // 
             // FrmLicencias
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1149, 434);
+            this.ClientSize = new System.Drawing.Size(1149, 471);
+            this.Controls.Add(this.btnCargarPrueba);
             this.Controls.Add(this.grpConsulta);
             this.Controls.Add(this.grpTramites);
             this.Controls.Add(this.grpRegistro);
@@ -398,9 +430,11 @@
         private System.Windows.Forms.GroupBox grpConsulta;
         private System.Windows.Forms.TextBox txtBuscarRuc;
         private System.Windows.Forms.Label lblBuscar;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.TextBox txtResultadoBusqueda;
         private System.Windows.Forms.Label lblTituloResultados;
+        private System.Windows.Forms.Button btnCargarPrueba;
+        private System.Windows.Forms.Button btnEliminar;
     }
 }
 
