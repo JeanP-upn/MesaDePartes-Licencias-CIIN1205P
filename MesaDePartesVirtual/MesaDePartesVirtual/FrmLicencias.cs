@@ -29,7 +29,7 @@ namespace MesaDePartesVirtual
         {
             InitializeComponent();
 
-            // AGREGADO: mostrar el contador al abrir el formulario
+            //mostrar el contador al abrir el formulario
             lblTotalRegistrados.Text = "Total Registrados: 0";
         }
 
@@ -214,12 +214,12 @@ namespace MesaDePartesVirtual
             rucs[4] = "10111222333"; nombres[4] = "Farmacia Salud"; giros[4] = "Farmacia"; areas[4] = 60.20;
             rucs[5] = "20555666777"; nombres[5] = "Minimarket Los Andes"; giros[5] = "Bodega"; areas[5] = 90.00;
             rucs[6] = "10444333222"; nombres[6] = "Cevichería El Puerto"; giros[6] = "Restaurante"; areas[6] = 150.00;
-            rucs[7] = "20999888777"; nombres[7] = "Librería Estudiantil"; giros[7] = "Comercio"; areas[7] = 35.00;
-            rucs[8] = "10121212121"; nombres[8] = "Panadería El Trigo"; giros[8] = "Panadería"; areas[8] = 70.00;
+            rucs[7] = "20999888777"; nombres[7] = "Librería Estudiantil"; giros[7] = "Bodega"; areas[7] = 35.00;
+            rucs[8] = "10121212121"; nombres[8] = "Panadería El Trigo"; giros[8] = "Bodega"; areas[8] = 70.00;
             rucs[9] = "20343434343"; nombres[9] = "Botica San Juan"; giros[9] = "Farmacia"; areas[9] = 55.00;
             rucs[10] = "10565656565"; nombres[10] = "Vidriería Clara"; giros[10] = "Ferretería"; areas[10] = 40.00;
             rucs[11] = "20787878787"; nombres[11] = "Pollería El Buen Sabor"; giros[11] = "Restaurante"; areas[11] = 200.00;
-            rucs[12] = "10909090909"; nombres[12] = "Bazar La Esquina"; giros[12] = "Comercio"; areas[12] = 20.00;
+            rucs[12] = "10909090909"; nombres[12] = "Recepciones El Gran Salón"; giros[12] = "Local para eventos"; areas[12] = 250.00;
             rucs[13] = "20212223242"; nombres[13] = "Centro Odontológico"; giros[13] = "Servicios"; areas[13] = 65.00;
             rucs[14] = "10515253545"; nombres[14] = "Spa Relax"; giros[14] = "Servicios"; areas[14] = 80.00;
 
@@ -227,6 +227,105 @@ namespace MesaDePartesVirtual
             ActualizarCuadricula();
 
             MessageBox.Show("Base de datos de prueba (15 registros) cargada exitosamente.", "Carga Completa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        
+        //Doble Click para cargar datos de la tabla al registro
+        private void dgvExpedientes_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.RowIndex < totalExpedientes)
+            {
+                indiceSeleccionado = e.RowIndex;
+                txtRuc.Text = rucs[indiceSeleccionado];
+                txtNombreComercial.Text = nombres[indiceSeleccionado];
+                cboGiro.Text = giros[indiceSeleccionado];
+                txtArea.Text = areas[indiceSeleccionado].ToString();
+            }
+        }
+        //Modificar fila seleccionada
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            if (indiceSeleccionado < 0)
+            {
+                MessageBox.Show("Por favor, seleccione un expediente de la tabla para modificar.", "Selección Requerida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string rucIn = txtRuc.Text.Trim();
+            string nombreIn = txtNombreComercial.Text.Trim();
+            string giroIn = cboGiro.Text;
+            string areaTexto = txtArea.Text.Trim();
+
+            // Validar longitud del RUC
+            if (rucIn.Length != 11)
+            {
+                MessageBox.Show("El RUC debe tener exactamente 11 digitos",
+                    "Error de Validación", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                txtRuc.Focus();
+                return;
+            }
+
+            // Validar inicio del RUC
+            if (!rucIn.StartsWith("10") && !rucIn.StartsWith("20"))
+            {
+                MessageBox.Show("El RUC debe iniciar con '10' (Persona Natural) o '20' (Persona Jurídica)",
+                    "Error de Validación", MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                txtRuc.Focus();
+                return;
+            }
+
+            // Validar nombre y giro
+            if (string.IsNullOrEmpty(nombreIn) ||
+                string.IsNullOrEmpty(giroIn))
+            {
+                MessageBox.Show("Debe ingresar el Nombre Comercial y seleccionar un Giro.",
+                    "Datos Incompletos", MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Validación de Ruc Duplicado (excluyendo el índice actual que estamos modificando)
+            for (int i = 0; i < totalExpedientes; i++)
+            {
+                if (rucs[i] == rucIn && i != indiceSeleccionado)
+                {
+                    MessageBox.Show($"El RUC {rucIn} ya pertenece a otro expediente. No se permiten duplicados.",
+                                    "Expediente Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtRuc.Focus();
+                    return;
+                }
+            }
+
+            // Validar área
+            double areaIn;
+
+            if (!double.TryParse(areaTexto, out areaIn) || areaIn <= 0)
+            {
+                MessageBox.Show("Ingrese un valor de área válido y mayor a cero.",
+                    "Error de Validación", MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                txtArea.Focus();
+                return;
+            }
+
+            DialogResult confirmacion = MessageBox.Show(
+                $"¿Desea guardar los cambios para el expediente de la empresa: {nombres[indiceSeleccionado]}?",
+                "Confirmar Modificación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (confirmacion == DialogResult.Yes)
+            {
+                // Sobreescritura directa en los arreglos usando el índice seleccionado
+                rucs[indiceSeleccionado] = rucIn;
+                nombres[indiceSeleccionado] = nombreIn;
+                giros[indiceSeleccionado] = giroIn;
+                areas[indiceSeleccionado] = areaIn;
+
+                ActualizarCuadricula();
+                LimpiarFormulario();
+
+                MessageBox.Show("Expediente modificado exitosamente.", "Operación Exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
 

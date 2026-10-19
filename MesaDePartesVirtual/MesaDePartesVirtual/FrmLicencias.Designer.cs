@@ -43,6 +43,7 @@
             this.txtRuc = new System.Windows.Forms.TextBox();
             this.lblRuc = new System.Windows.Forms.Label();
             this.grpTramites = new System.Windows.Forms.GroupBox();
+            this.btnModificar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.grpInformacion = new System.Windows.Forms.GroupBox();
             this.lblMayorArea = new System.Windows.Forms.Label();
@@ -144,7 +145,7 @@
             "Farmacia",
             "Ferretería",
             "Restaurante",
-            "Centro de Promoción",
+            "Local para eventos",
             "Servicios"});
             this.cboGiro.Location = new System.Drawing.Point(121, 126);
             this.cboGiro.Name = "cboGiro";
@@ -196,6 +197,7 @@
             // 
             // grpTramites
             // 
+            this.grpTramites.Controls.Add(this.btnModificar);
             this.grpTramites.Controls.Add(this.btnEliminar);
             this.grpTramites.Controls.Add(this.grpInformacion);
             this.grpTramites.Controls.Add(this.dgvExpedientes);
@@ -206,6 +208,20 @@
             this.grpTramites.TabIndex = 3;
             this.grpTramites.TabStop = false;
             this.grpTramites.Text = "EXPEDIENTES EN TRÁMITE";
+            // 
+            // btnModificar
+            // 
+            this.btnModificar.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnModificar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnModificar.ForeColor = System.Drawing.Color.White;
+            this.btnModificar.Location = new System.Drawing.Point(292, 230);
+            this.btnModificar.Name = "btnModificar";
+            this.btnModificar.Size = new System.Drawing.Size(116, 31);
+            this.btnModificar.TabIndex = 10;
+            this.btnModificar.Text = "MODIFICAR FILA";
+            this.btnModificar.UseVisualStyleBackColor = false;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
             // btnEliminar
             // 
@@ -271,6 +287,7 @@
             this.dgvExpedientes.Size = new System.Drawing.Size(516, 202);
             this.dgvExpedientes.TabIndex = 0;
             this.dgvExpedientes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvExpedientes_CellClick);
+            this.dgvExpedientes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvExpedientes_CellDoubleClick);
             // 
             // RUC
             // 
@@ -435,6 +452,7 @@
         private System.Windows.Forms.Label lblTituloResultados;
         private System.Windows.Forms.Button btnCargarPrueba;
         private System.Windows.Forms.Button btnEliminar;
+        private System.Windows.Forms.Button btnModificar;
     }
 }
 
