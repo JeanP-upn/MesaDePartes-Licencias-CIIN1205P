@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblTituloPrincipal = new System.Windows.Forms.Label();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.lblSubtitulo = new System.Windows.Forms.Label();
@@ -60,6 +60,7 @@
             this.txtBuscarRuc = new System.Windows.Forms.TextBox();
             this.lblBuscar = new System.Windows.Forms.Label();
             this.btnCargarPrueba = new System.Windows.Forms.Button();
+            this.btnLimpiar = new System.Windows.Forms.Button();
             this.grpRegistro.SuspendLayout();
             this.grpTramites.SuspendLayout();
             this.grpInformacion.SuspendLayout();
@@ -89,6 +90,9 @@
             // 
             // grpRegistro
             // 
+            this.grpRegistro.Controls.Add(this.btnLimpiar);
+            this.grpRegistro.Controls.Add(this.btnEliminar);
+            this.grpRegistro.Controls.Add(this.btnModificar);
             this.grpRegistro.Controls.Add(this.btnRegistrar);
             this.grpRegistro.Controls.Add(this.txtArea);
             this.grpRegistro.Controls.Add(this.lblArea);
@@ -101,7 +105,7 @@
             this.grpRegistro.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpRegistro.Location = new System.Drawing.Point(12, 78);
             this.grpRegistro.Name = "grpRegistro";
-            this.grpRegistro.Size = new System.Drawing.Size(293, 347);
+            this.grpRegistro.Size = new System.Drawing.Size(260, 443);
             this.grpRegistro.TabIndex = 2;
             this.grpRegistro.TabStop = false;
             this.grpRegistro.Text = "REGISTRO DE EXPEDIENTES";
@@ -111,9 +115,9 @@
             this.btnRegistrar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(55)))), ((int)(((byte)(82)))));
             this.btnRegistrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRegistrar.ForeColor = System.Drawing.Color.White;
-            this.btnRegistrar.Location = new System.Drawing.Point(53, 206);
+            this.btnRegistrar.Location = new System.Drawing.Point(35, 209);
             this.btnRegistrar.Name = "btnRegistrar";
-            this.btnRegistrar.Size = new System.Drawing.Size(180, 32);
+            this.btnRegistrar.Size = new System.Drawing.Size(184, 32);
             this.btnRegistrar.TabIndex = 8;
             this.btnRegistrar.Text = "REGISTRAR EXPEDIENTE";
             this.btnRegistrar.UseVisualStyleBackColor = false;
@@ -124,7 +128,7 @@
             this.txtArea.Location = new System.Drawing.Point(134, 162);
             this.txtArea.MaxLength = 4;
             this.txtArea.Name = "txtArea";
-            this.txtArea.Size = new System.Drawing.Size(147, 25);
+            this.txtArea.Size = new System.Drawing.Size(111, 25);
             this.txtArea.TabIndex = 7;
             // 
             // lblArea
@@ -149,7 +153,7 @@
             "Servicios"});
             this.cboGiro.Location = new System.Drawing.Point(121, 126);
             this.cboGiro.Name = "cboGiro";
-            this.cboGiro.Size = new System.Drawing.Size(160, 25);
+            this.cboGiro.Size = new System.Drawing.Size(124, 25);
             this.cboGiro.TabIndex = 5;
             // 
             // lblGiro
@@ -166,7 +170,7 @@
             this.txtNombreComercial.Location = new System.Drawing.Point(9, 89);
             this.txtNombreComercial.MaxLength = 50;
             this.txtNombreComercial.Name = "txtNombreComercial";
-            this.txtNombreComercial.Size = new System.Drawing.Size(272, 25);
+            this.txtNombreComercial.Size = new System.Drawing.Size(236, 25);
             this.txtNombreComercial.TabIndex = 3;
             // 
             // lblNombre
@@ -183,7 +187,7 @@
             this.txtRuc.Location = new System.Drawing.Point(9, 41);
             this.txtRuc.MaxLength = 11;
             this.txtRuc.Name = "txtRuc";
-            this.txtRuc.Size = new System.Drawing.Size(272, 25);
+            this.txtRuc.Size = new System.Drawing.Size(236, 25);
             this.txtRuc.TabIndex = 1;
             // 
             // lblRuc
@@ -197,14 +201,13 @@
             // 
             // grpTramites
             // 
-            this.grpTramites.Controls.Add(this.btnModificar);
-            this.grpTramites.Controls.Add(this.btnEliminar);
             this.grpTramites.Controls.Add(this.grpInformacion);
             this.grpTramites.Controls.Add(this.dgvExpedientes);
+            this.grpTramites.Controls.Add(this.btnCargarPrueba);
             this.grpTramites.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.grpTramites.Location = new System.Drawing.Point(311, 78);
+            this.grpTramites.Location = new System.Drawing.Point(278, 78);
             this.grpTramites.Name = "grpTramites";
-            this.grpTramites.Size = new System.Drawing.Size(528, 347);
+            this.grpTramites.Size = new System.Drawing.Size(531, 443);
             this.grpTramites.TabIndex = 3;
             this.grpTramites.TabStop = false;
             this.grpTramites.Text = "EXPEDIENTES EN TRÁMITE";
@@ -215,11 +218,11 @@
             this.btnModificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnModificar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnModificar.ForeColor = System.Drawing.Color.White;
-            this.btnModificar.Location = new System.Drawing.Point(292, 230);
+            this.btnModificar.Location = new System.Drawing.Point(35, 247);
             this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(116, 31);
+            this.btnModificar.Size = new System.Drawing.Size(90, 47);
             this.btnModificar.TabIndex = 10;
-            this.btnModificar.Text = "MODIFICAR FILA";
+            this.btnModificar.Text = "MODIFICAR REGISTRO";
             this.btnModificar.UseVisualStyleBackColor = false;
             this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
@@ -229,11 +232,11 @@
             this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEliminar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEliminar.ForeColor = System.Drawing.Color.White;
-            this.btnEliminar.Location = new System.Drawing.Point(414, 230);
+            this.btnEliminar.Location = new System.Drawing.Point(134, 247);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(102, 31);
+            this.btnEliminar.Size = new System.Drawing.Size(85, 47);
             this.btnEliminar.TabIndex = 9;
-            this.btnEliminar.Text = "ELIMINAR FILA";
+            this.btnEliminar.Text = "ELIMINAR REGISTRO";
             this.btnEliminar.UseVisualStyleBackColor = false;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
@@ -241,7 +244,7 @@
             // 
             this.grpInformacion.Controls.Add(this.lblMayorArea);
             this.grpInformacion.Controls.Add(this.lblTotalRegistrados);
-            this.grpInformacion.Location = new System.Drawing.Point(6, 267);
+            this.grpInformacion.Location = new System.Drawing.Point(6, 363);
             this.grpInformacion.Name = "grpInformacion";
             this.grpInformacion.Size = new System.Drawing.Size(516, 74);
             this.grpInformacion.TabIndex = 2;
@@ -284,7 +287,7 @@
             this.dgvExpedientes.ReadOnly = true;
             this.dgvExpedientes.RowHeadersVisible = false;
             this.dgvExpedientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvExpedientes.Size = new System.Drawing.Size(516, 202);
+            this.dgvExpedientes.Size = new System.Drawing.Size(516, 295);
             this.dgvExpedientes.TabIndex = 0;
             this.dgvExpedientes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvExpedientes_CellClick);
             this.dgvExpedientes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvExpedientes_CellDoubleClick);
@@ -309,8 +312,8 @@
             // 
             // Area
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.Area.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Area.DefaultCellStyle = dataGridViewCellStyle2;
             this.Area.HeaderText = "Área (m²)";
             this.Area.Name = "Area";
             this.Area.ReadOnly = true;
@@ -323,9 +326,9 @@
             this.grpConsulta.Controls.Add(this.txtBuscarRuc);
             this.grpConsulta.Controls.Add(this.lblBuscar);
             this.grpConsulta.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.grpConsulta.Location = new System.Drawing.Point(845, 78);
+            this.grpConsulta.Location = new System.Drawing.Point(815, 78);
             this.grpConsulta.Name = "grpConsulta";
-            this.grpConsulta.Size = new System.Drawing.Size(295, 347);
+            this.grpConsulta.Size = new System.Drawing.Size(325, 443);
             this.grpConsulta.TabIndex = 4;
             this.grpConsulta.TabStop = false;
             this.grpConsulta.Text = "CONSULTA CIUDADANA Y BÚSQUEDA";
@@ -333,18 +336,18 @@
             // txtResultadoBusqueda
             // 
             this.txtResultadoBusqueda.BackColor = System.Drawing.Color.White;
-            this.txtResultadoBusqueda.Location = new System.Drawing.Point(9, 157);
+            this.txtResultadoBusqueda.Location = new System.Drawing.Point(6, 157);
             this.txtResultadoBusqueda.MaxLength = 50;
             this.txtResultadoBusqueda.Multiline = true;
             this.txtResultadoBusqueda.Name = "txtResultadoBusqueda";
             this.txtResultadoBusqueda.ReadOnly = true;
-            this.txtResultadoBusqueda.Size = new System.Drawing.Size(279, 160);
+            this.txtResultadoBusqueda.Size = new System.Drawing.Size(307, 256);
             this.txtResultadoBusqueda.TabIndex = 11;
             // 
             // lblTituloResultados
             // 
             this.lblTituloResultados.AutoSize = true;
-            this.lblTituloResultados.Location = new System.Drawing.Point(6, 134);
+            this.lblTituloResultados.Location = new System.Drawing.Point(6, 129);
             this.lblTituloResultados.Name = "lblTituloResultados";
             this.lblTituloResultados.Size = new System.Drawing.Size(174, 17);
             this.lblTituloResultados.TabIndex = 10;
@@ -355,16 +358,17 @@
             this.btnBuscar.BackColor = System.Drawing.Color.DodgerBlue;
             this.btnBuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBuscar.ForeColor = System.Drawing.Color.White;
-            this.btnBuscar.Location = new System.Drawing.Point(60, 82);
+            this.btnBuscar.Location = new System.Drawing.Point(78, 82);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(180, 32);
             this.btnBuscar.TabIndex = 9;
             this.btnBuscar.Text = "BUSCAR";
             this.btnBuscar.UseVisualStyleBackColor = false;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // txtBuscarRuc
             // 
-            this.txtBuscarRuc.Location = new System.Drawing.Point(9, 42);
+            this.txtBuscarRuc.Location = new System.Drawing.Point(9, 41);
             this.txtBuscarRuc.MaxLength = 11;
             this.txtBuscarRuc.Name = "txtBuscarRuc";
             this.txtBuscarRuc.Size = new System.Drawing.Size(279, 25);
@@ -373,7 +377,7 @@
             // lblBuscar
             // 
             this.lblBuscar.AutoSize = true;
-            this.lblBuscar.Location = new System.Drawing.Point(6, 22);
+            this.lblBuscar.Location = new System.Drawing.Point(6, 21);
             this.lblBuscar.Name = "lblBuscar";
             this.lblBuscar.Size = new System.Drawing.Size(137, 17);
             this.lblBuscar.TabIndex = 5;
@@ -385,20 +389,32 @@
             this.btnCargarPrueba.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCargarPrueba.Font = new System.Drawing.Font("Segoe UI", 9.75F);
             this.btnCargarPrueba.ForeColor = System.Drawing.Color.White;
-            this.btnCargarPrueba.Location = new System.Drawing.Point(32, 18);
+            this.btnCargarPrueba.Location = new System.Drawing.Point(6, 323);
             this.btnCargarPrueba.Name = "btnCargarPrueba";
-            this.btnCargarPrueba.Size = new System.Drawing.Size(95, 48);
+            this.btnCargarPrueba.Size = new System.Drawing.Size(184, 31);
             this.btnCargarPrueba.TabIndex = 9;
             this.btnCargarPrueba.Text = "CARGAR BD (ejemplo)";
             this.btnCargarPrueba.UseVisualStyleBackColor = false;
             this.btnCargarPrueba.Click += new System.EventHandler(this.btnCargarPrueba_Click);
             // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.btnLimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLimpiar.ForeColor = System.Drawing.Color.White;
+            this.btnLimpiar.Location = new System.Drawing.Point(35, 300);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(184, 32);
+            this.btnLimpiar.TabIndex = 11;
+            this.btnLimpiar.Text = "LIMPIAR CAMPOS";
+            this.btnLimpiar.UseVisualStyleBackColor = false;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            // 
             // FrmLicencias
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1149, 471);
-            this.Controls.Add(this.btnCargarPrueba);
+            this.ClientSize = new System.Drawing.Size(1154, 541);
             this.Controls.Add(this.grpConsulta);
             this.Controls.Add(this.grpTramites);
             this.Controls.Add(this.grpRegistro);
@@ -453,6 +469,7 @@
         private System.Windows.Forms.Button btnCargarPrueba;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnModificar;
+        private System.Windows.Forms.Button btnLimpiar;
     }
 }
 

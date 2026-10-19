@@ -328,6 +328,103 @@ namespace MesaDePartesVirtual
             }
         }
 
+        private int CalcularAforo(string giro, double area)
+        {
+            double indiceOcupacion = 2.8;
 
+            switch (giro)
+            {
+                case "Restaurante":
+                    indiceOcupacion = 1.5;
+                    break;
+                case "Local para eventos":
+                    indiceOcupacion = 1.0;
+                    break;
+                case "Servicios":
+                    indiceOcupacion = 5.0;
+                    break;
+                case "Bodega":
+                case "Farmacia":
+                case "Ferretería":
+                    indiceOcupacion = 2.8;
+                    break;
+            }
+
+            double aforoCalculado = area / indiceOcupacion;
+            return (int)Math.Ceiling(aforoCalculado);
+        }
+        
+        private string RiesgoITSE(double area, int aforo)
+        {
+            // Riesgo Muy Alto
+            if (aforo > 500)
+            {
+                return "MUY ALTO (Requiere ITSE Previa Multidisciplinaria)";
+            }
+            // Riesgo Alto
+            else if (area > 500 || aforo > 100)
+            {
+                return "ALTO (Requiere Inspección Previa antes de operar)";
+            }
+            //Riesgo Medio
+            else if ((area > 100 && area <= 500) || (aforo >= 51 && aforo <= 100))
+            {
+                return "MEDIO (Licencia Automática con ITSE Posterior)";
+            }
+            // Riesgo Bajo
+            else if(area <= 100 && aforo <= 50)
+            {
+                return "BAJO (Licencia Automática con ITSE Posterior)";
+            }
+            else
+            return "NO DETERMINADO";
+        }
+        //Boton de busqueda por RUC
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            string rucBuscado = txtBuscarRuc.Text.Trim();
+
+            if (rucBuscado.Length != 11)
+            {
+                MessageBox.Show("Ingrese un RUC válido de 11 dígitos para buscar.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            bool encontrado = false;
+
+            for (int i = 0; i < totalExpedientes; i++)
+            {
+                if (rucs[i] == rucBuscado)
+                {
+                    encontrado = true;
+
+                    // Llamamos a nuestras nuevas funciones de cálculo ITSE
+                    int aforo = CalcularAforo(giros[i], areas[i]);
+                    string riesgo = RiesgoITSE(areas[i], aforo);
+
+                    txtResultadoBusqueda.Text =
+                        $"====== RESULTADO ENCONTRADO ======\r\n\r\n" +
+                        $"▶ RUC: {rucs[i]}\r\n" +
+                        $"▶ EMPRESA: {nombres[i]}\r\n" +
+                        $"▶ GIRO: {giros[i]}\r\n" +
+                        $"▶ ÁREA DECLARADA: {areas[i]:N2} m²\r\n\r\n" +
+                        $"====== EVALUACIÓN ITSE ======\r\n\r\n" +
+                        $"▶ AFORO MÁX. PERMITIDO: {aforo} personas\r\n" +
+                        $"▶ NIVEL DE RIESGO: \r\n  {riesgo}\r\n";
+
+                    break;
+                }
+            }
+
+            if (!encontrado)
+            {
+                txtResultadoBusqueda.Text = "No se encontró ningún expediente activo vinculado al RUC ingresado.";
+            }
+        }
+        //Boton para limpiar campos del formulario
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            LimpiarFormulario();
+        }
     }
 }
